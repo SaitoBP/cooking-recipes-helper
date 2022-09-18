@@ -16,7 +16,7 @@ const Navbar: FC<NavbarProps> = (props) => {
       width={{ sm: 200, lg: 300 }}
     >
       {links.map((link) => (
-        <NavbarLink link={link} />
+        <NavbarLink key={link.label} link={link} />
       ))}
     </MantineNavbar>
   )
