@@ -2,8 +2,9 @@ import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Article } from 'tabler-icons-react'
 
-import App from '../App'
 import { NavbarLinkTemplate, PageLayout } from '../components'
+
+import { RecipesRouter } from './Recipes'
 
 const links: NavbarLinkTemplate[] = [
   {
@@ -19,7 +20,7 @@ const Router: FC = () => {
       <Route path='/' element={<Navigate to='recipes' />} />
 
       <Route element={<PageLayout links={links} />}>
-        <Route path='recipes' element={<App />} />
+        <Route path='recipes/*' element={<RecipesRouter />} />
       </Route>
     </Routes>
   )
