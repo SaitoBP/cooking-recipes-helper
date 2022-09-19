@@ -21,6 +21,10 @@ jobs:
         with:
           node-version: 18.x
 
+      - name: Install dependencies
+        working-directory: "./frontend"
+        run: npm install --omit=dev
       - name: Build
+
         working-directory: "./frontend"
         run: npm run build
