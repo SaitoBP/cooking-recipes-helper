@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  backend-db:
+    container_name: backend-db
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=cooking-recipe-helper-db
+    ports:
+      - 9001:5432
+    volumes:
+      - backend-volume:/var/lib/postgresql/data
+
+volumes:
+  backend-volume:
