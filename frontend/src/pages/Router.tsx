@@ -11,6 +11,7 @@ const links: NavbarLinkTemplate[] = [
     color: 'blue',
     icon: <Article />,
     label: 'Receitas',
+    path: '/recipes',
   },
 ]
 

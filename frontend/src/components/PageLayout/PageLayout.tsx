@@ -15,7 +15,7 @@ const PageLayout: FC<PageLayoutProps> = (props) => {
   return (
     <AppShell
       navbarOffsetBreakpoint='sm'
-      navbar={<Navbar isOpen={isOpen} links={links} />}
+      navbar={<Navbar isOpen={isOpen} setIsOpen={setIsOpen} links={links} />}
       header={<Header isOpen={isOpen} setIsOpen={setIsOpen} />}
     >
       <Outlet />
