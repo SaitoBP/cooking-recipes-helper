@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import { SuspenseLoading } from '../../components'
 
+const RecipesForm = lazy(() => import('./Form/RecipesForm'))
 const RecipesList = lazy(() => import('./List/RecipesList'))
 
 const RecipesRouter: FC = () => {
@@ -15,7 +16,34 @@ const RecipesRouter: FC = () => {
             <RecipesList />
           </SuspenseLoading>
         }
-      ></Route>
+      >
+        <Route
+          path='new'
+          element={
+            <SuspenseLoading>
+              <RecipesForm type='new' />
+            </SuspenseLoading>
+          }
+        />
+
+        <Route
+          path='edit/:id'
+          element={
+            <SuspenseLoading>
+              <RecipesForm type='edit' />
+            </SuspenseLoading>
+          }
+        />
+
+        <Route
+          path='detail/:id'
+          element={
+            <SuspenseLoading>
+              <RecipesForm type='detail' />
+            </SuspenseLoading>
+          }
+        />
+      </Route>
     </Routes>
   )
 }

@@ -1,9 +1,11 @@
-import { Text, TextInput, ActionIcon, Button, Card } from '@mantine/core'
+import { Text, TextInput, ActionIcon, Button, Card, Group } from '@mantine/core'
 import { FC } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Filter } from 'tabler-icons-react'
+import { Edit, Filter } from 'tabler-icons-react'
 
 import { Recipe } from '../../../types'
+
+import { useRecipesList } from './hooks/useRecipesList'
 
 const recipes: Recipe[] = [
   {
@@ -21,27 +23,47 @@ const recipes: Recipe[] = [
 ]
 
 const RecipesList: FC = () => {
+  const { navigateToForm } = useRecipesList()
+
   return (
     <>
-      <Text>Receitas</Text>
+      <Text size='xl'>Receitas</Text>
 
-      <TextInput placeholder='Pesquisar receita...' />
+      <Group my='sm' noWrap>
+        <TextInput
+          placeholder='Pesquisar receita...'
+          style={{ width: '100%' }}
+        />
 
-      <ActionIcon variant='subtle'>
-        <Filter size={32} />
-      </ActionIcon>
+        <ActionIcon variant='subtle'>
+          <Filter size={32} />
+        </ActionIcon>
+      </Group>
 
-      <Button fullWidth>Adicionar Receita</Button>
+      <Button fullWidth onClick={() => navigateToForm('new')}>
+        Adicionar Receita
+      </Button>
 
       {recipes.map((recipe) => (
         <Card key={recipe.id} shadow='xs' p='lg' my='sm' withBorder>
-          <Text>{recipe.name}</Text>
+          <Group position='apart' mb='sm'>
+            <Text>{recipe.name}</Text>
+
+            <ActionIcon onClick={() => navigateToForm('edit', recipe.id)}>
+              <Edit />
+            </ActionIcon>
+          </Group>
 
           <Text size='sm' color='dimmed'>
             {recipe.description}
           </Text>
 
-          <Button variant='light' fullWidth mt='md'>
+          <Button
+            variant='light'
+            fullWidth
+            mt='md'
+            onClick={() => navigateToForm('detail', recipe.id)}
+          >
             Abrir Receita
           </Button>
         </Card>

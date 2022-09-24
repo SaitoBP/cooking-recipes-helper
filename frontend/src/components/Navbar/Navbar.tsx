@@ -6,7 +6,7 @@ import { NavbarLink } from '../NavbarLink'
 import { NavbarProps } from './Navbar.types'
 
 const Navbar: FC<NavbarProps> = (props) => {
-  const { isOpen, links } = props
+  const { isOpen, setIsOpen, links } = props
 
   return (
     <MantineNavbar
@@ -16,7 +16,7 @@ const Navbar: FC<NavbarProps> = (props) => {
       width={{ sm: 200, lg: 300 }}
     >
       {links.map((link) => (
-        <NavbarLink key={link.label} link={link} />
+        <NavbarLink key={link.label} link={link} setIsOpen={setIsOpen} />
       ))}
     </MantineNavbar>
   )

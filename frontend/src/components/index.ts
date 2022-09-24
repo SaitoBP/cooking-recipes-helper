@@ -1,3 +1,5 @@
+export * from './ControlledTextArea'
+export * from './ControlledTextInput'
 export * from './Header'
 export * from './Navbar'
 export * from './NavbarLink'
