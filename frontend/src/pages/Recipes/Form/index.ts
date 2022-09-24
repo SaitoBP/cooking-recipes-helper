@@ -1,1 +1,1 @@
-export { RecipesForm } from './RecipesForm'
+export { default as RecipesForm } from './RecipesForm'
