@@ -1,29 +1,12 @@
 import { Text, TextInput, ActionIcon, Button, Card, Group } from '@mantine/core'
 import { FC } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Edit, Filter } from 'tabler-icons-react'
-
-import { Recipe } from '../../../types'
+import { Edit, Filter, Trash } from 'tabler-icons-react'
 
 import { useRecipesList } from './hooks/useRecipesList'
 
-const recipes: Recipe[] = [
-  {
-    id: '1',
-    name: 'Recipe 1',
-    description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem animi veniam delectus suscipit nobis voluptas fuga eveniet, voluptatem porro ullam.',
-  },
-  {
-    id: '2',
-    name: 'Recipe 2',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit hic recusandae eos fuga vitae aliquid saepe, veniam neque unde necessitatibus?',
-  },
-]
-
 const RecipesList: FC = () => {
-  const { navigateToForm } = useRecipesList()
+  const { navigateToForm, recipes, handleDelete } = useRecipesList()
 
   return (
     <>
@@ -49,9 +32,15 @@ const RecipesList: FC = () => {
           <Group position='apart' mb='sm'>
             <Text>{recipe.name}</Text>
 
-            <ActionIcon onClick={() => navigateToForm('edit', recipe.id)}>
-              <Edit />
-            </ActionIcon>
+            <Group>
+              <ActionIcon onClick={() => navigateToForm('edit', recipe.id)}>
+                <Edit />
+              </ActionIcon>
+
+              <ActionIcon onClick={() => handleDelete(recipe.id)}>
+                <Trash />
+              </ActionIcon>
+            </Group>
           </Group>
 
           <Text size='sm' color='dimmed'>
