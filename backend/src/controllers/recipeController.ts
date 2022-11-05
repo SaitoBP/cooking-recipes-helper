@@ -59,5 +59,5 @@ recipeController.delete('/:id', async (req, res) => {
 
   await recipeRepository.remove(recipe)
 
-  return res.status(204)
+  return res.status(204).json({})
 })
